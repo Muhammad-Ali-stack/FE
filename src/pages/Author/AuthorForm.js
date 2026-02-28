@@ -269,362 +269,273 @@ function AuthorForm({ conferenceName }) {
 
   return (
     <Layout title={"Confizio - Submit paper"}>
-      <div className="flex flex-col items-center bg-gray-100 min-h-screen p-8">
-        <div className="w-full max-w-2xl bg-white rounded-lg shadow-md p-6">
-          <h1 className="text-2xl font-semibold text-center text-gray-700 mb-4">
-            New Submission for {conferenceName || fetchedConferenceName}
-          </h1>
-          <p className="text-sm text-gray-600 mb-6 text-center">
-            Follow the instructions, step by step, and then use the "Submit"
-            button at the bottom of the form.
-          </p>
+      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+              Submit Your Research
+            </h1>
+            <p className="mt-4 text-lg text-gray-600 font-medium">
+              to <span className="text-red-700 font-bold">{conferenceName || fetchedConferenceName}</span>
+            </p>
+            <div className="mt-4 flex justify-center">
+              <div className="w-16 h-1 bg-red-600 rounded-full"></div>
+            </div>
+          </div>
 
-          <form onSubmit={handleSubmit}>
-            {authors.map((author, index) => (
-              <div
-                key={index}
-                className="relative mb-6 p-4 border border-gray-300 rounded-lg bg-gray-50"
-              >
-                {index !== 0 && (
-                  <button
-                    type="button"
-                    onClick={() => removeAuthor(index)}
-                    className="absolute top-3 right-3 text-red-600 hover:text-red-800"
-                    title="Remove this author"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>{" "}
-                  </button>
-                )}
-
-                <h2 className="text-lg font-medium text-gray-700 mb-4">
-                  Author {index + 1}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label className="block text-gray-700">
-                      First name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                      value={author.firstName}
-                      onChange={(e) => handleInputChange(index, e)}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700">
-                      Last name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                      value={author.lastName}
-                      onChange={(e) => handleInputChange(index, e)}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700">
-                      Email <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                      value={author.email}
-                      onChange={(e) => handleInputChange(index, e)}
-                      required
-                      disabled={index === 0}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700">
-                      Country <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      name="country"
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                      value={author.country}
-                      onChange={(e) => handleInputChange(index, e)}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700">
-                      Affiliation <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="affiliation"
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                      value={author.affiliation}
-                      onChange={(e) => handleInputChange(index, e)}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-gray-700">Web page</label>
-                    <input
-                      type="url"
-                      name="webPage"
-                      className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                      value={author.webPage}
-                      onChange={(e) => handleInputChange(index, e)}
-                    />
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="corresponding"
-                    className="mr-2"
-                    checked={index === 0}
-                    onChange={(e) => handleInputChange(index, e)}
-                    disabled={index === 0}
-                  />
-                  <label className="text-gray-700">Corresponding author</label>
-                </div>
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Authors Section */}
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+              <div className="bg-gray-50 px-8 py-4 border-b border-gray-100 flex justify-between items-center">
+                <h2 className="text-xl font-bold text-gray-900">Author Information</h2>
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Step 1 of 3</span>
               </div>
-            ))}
-
-            <button
-              type="button"
-              onClick={addAuthor}
-              className="w-full py-2 px-4 border border-gray-400 rounded-md text-gray-600 hover:bg-gray-200 mb-6"
-              // disabled={authors.length >= 3}
-            >
-              Add another author
-            </button>
-
-            <div className="mb-6 p-4 border border-gray-300 rounded-lg bg-gray-50">
-              <h2 className="text-lg font-medium text-gray-700 mb-4">
-                Title and Abstract
-              </h2>
-              <div className="mb-4">
-                <label className="block text-gray-700">
-                  Title <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="title"
-                  className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">
-                  Abstract <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  name="abstract"
-                  rows="4"
-                  className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                  value={abstract}
-                  onChange={(e) => {
-                    setAbstract(e.target.value);
-                    const words = e.target.value
-                      .trim()
-                      .split(/\s+/)
-                      .filter(Boolean);
-                    setAbstractWordCount(words.length);
-                  }}
-                  required
-                />
-                <p
-                  className={`text-sm mt-1 ${
-                    abstractWordCount < 100
-                      ? "text-yellow-600"
-                      : abstractWordCount > 300
-                      ? "text-red-600"
-                      : "text-green-600"
-                  }`}
-                >
-                  {abstractWordCount} words –{" "}
-                  {abstractWordCount < 100
-                    ? `Add ${100 - abstractWordCount} more word(s)`
-                    : abstractWordCount > 300
-                    ? `Remove ${abstractWordCount - 300} word(s)`
-                    : "Looks good!"}
-                </p>
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">
-                  Keywords <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="keywords"
-                  className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                  value={keywords}
-                  onChange={(e) => setKeywords(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="file"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Upload Paper (PDF)
-                </label>
-
-                <div className="relative">
-                  <input
-                    type="file"
-                    id="file"
-                    name="file"
-                    accept="application/pdf"
-                    onChange={handleFileChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-gray-50 file:text-primary hover:file:bg-gray-100 transition duration-200 file:border-primary"
-                    ref={fileInputRef}
-                  />
-
-                  {selectedFile && (
-                    <div className="flex items-center space-x-2 bg-white px-2 py-1 mt-2 rounded">
-                      <span className="text-sm text-gray-700 truncate">
-                        {selectedFile.name}
-                      </span>
+              <div className="p-8 space-y-8">
+                {authors.map((author, index) => (
+                  <div key={index} className="relative p-6 bg-gray-50 rounded-2xl border border-gray-100 group transition-all hover:shadow-md">
+                    {index !== 0 && (
                       <button
                         type="button"
-                        onClick={removeFile}
-                        className="text-red-600 hover:text-red-800"
-                        title="Remove file"
+                        onClick={() => removeAuthor(index)}
+                        className="absolute top-4 right-4 p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-all"
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
+                    )}
+                    <div className="flex items-center space-x-3 mb-6">
+                      <div className="h-8 w-8 bg-red-600 text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-lg shadow-red-900/20">
+                        {index + 1}
+                      </div>
+                      <h3 className="font-bold text-gray-900 uppercase tracking-wider text-sm">Author Details</h3>
                     </div>
-                  )}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">First Name <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={author.firstName}
+                          onChange={(e) => handleInputChange(index, e)}
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:outline-none transition-all shadow-sm"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Last Name <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={author.lastName}
+                          onChange={(e) => handleInputChange(index, e)}
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:outline-none transition-all shadow-sm"
+                          required
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Email <span className="text-red-500">*</span></label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={author.email}
+                          onChange={(e) => handleInputChange(index, e)}
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:outline-none transition-all shadow-sm disabled:bg-gray-100 disabled:text-gray-400"
+                          required
+                          disabled={index === 0}
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Country <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="country"
+                          value={author.country}
+                          onChange={(e) => handleInputChange(index, e)}
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:outline-none transition-all shadow-sm"
+                          required
+                        />
+                      </div>
+                      <div className="md:col-span-2 space-y-1">
+                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Affiliation <span className="text-red-500">*</span></label>
+                        <input
+                          type="text"
+                          name="affiliation"
+                          value={author.affiliation}
+                          onChange={(e) => handleInputChange(index, e)}
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:outline-none transition-all shadow-sm"
+                          placeholder="University or Institution Name"
+                          required
+                        />
+                      </div>
+                    </div>
+                    {index === 0 && (
+                      <div className="mt-4 flex items-center space-x-2 px-1">
+                        <div className="h-5 w-5 rounded bg-red-50 flex items-center justify-center border border-red-200">
+                          <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-bold text-red-700 uppercase tracking-wider">Primary Corresponding Author</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                
+                {authors.length < 3 && (
+                  <button
+                    type="button"
+                    onClick={addAuthor}
+                    className="w-full py-4 border-2 border-dashed border-gray-200 rounded-2xl text-gray-400 font-bold uppercase tracking-widest hover:border-red-200 hover:text-red-600 hover:bg-red-50 transition-all"
+                  >
+                    + Add Co-Author
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Content Section */}
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+              <div className="bg-gray-50 px-8 py-4 border-b border-gray-100 flex justify-between items-center">
+                <h2 className="text-xl font-bold text-gray-900">Paper Details</h2>
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Step 2 of 3</span>
+              </div>
+              <div className="p-8 space-y-8">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-gray-700 ml-1">Paper Title <span className="text-red-500">*</span></label>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all shadow-sm font-medium"
+                    placeholder="Enter the full title of your research paper"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-end ml-1">
+                    <label className="text-sm font-bold text-gray-700">Abstract <span className="text-red-500">*</span></label>
+                    <span className={`text-[10px] font-bold uppercase tracking-widest ${abstractWordCount < 100 || abstractWordCount > 300 ? 'text-red-500' : 'text-green-600'}`}>
+                      {abstractWordCount} / 300 Words
+                    </span>
+                  </div>
+                  <textarea
+                    rows="8"
+                    value={abstract}
+                    onChange={(e) => {
+                      setAbstract(e.target.value);
+                      const words = e.target.value.trim().split(/\s+/).filter(Boolean);
+                      setAbstractWordCount(words.length);
+                    }}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all shadow-sm leading-relaxed"
+                    placeholder="Provide a concise summary of your research (100-300 words)"
+                    required
+                  ></textarea>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-gray-700 ml-1">Keywords <span className="text-red-500">*</span></label>
+                  <input
+                    type="text"
+                    value={keywords}
+                    onChange={(e) => setKeywords(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all shadow-sm"
+                    placeholder="Comma separated (e.g. AI, Deep Learning, Cloud Computing)"
+                    required
+                  />
                 </div>
               </div>
             </div>
-            {submissionStatus && (
-              <p className="text-center text-gray-700 mb-4">
-                {submissionStatus}
-              </p>
-            )}
-            {complianceLoading && (
-              <p className="text-center text-gray-700 mb-4">
-                Checking compliance...
-              </p>
-            )}
-            {complianceReport && (
-              <div className="mb-6 p-4 border border-gray-300 rounded-lg bg-gray-50">
-                <h2 className="text-lg font-medium text-gray-700 mb-4">
-                  Compliance Report
-                </h2>
-                <p>Compliance Score: {complianceReport.percentage}%</p>
-                <ul className="list-disc pl-5">
-                  {complianceReport.details.map((detail, index) => (
-                    <li key={index} className="mb-2">
-                      <strong>{detail.rule}:</strong> {detail.message}
-                      {detail.suggestion && (
-                        <p className="text-red-600">
-                          Suggestion: {detail.suggestion}
-                        </p>
+
+            {/* File Section */}
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+              <div className="bg-gray-50 px-8 py-4 border-b border-gray-100 flex justify-between items-center">
+                <h2 className="text-xl font-bold text-gray-900">Manuscript Upload</h2>
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Step 3 of 3</span>
+              </div>
+              <div className="p-8">
+                <div className={`relative group border-2 border-dashed rounded-2xl p-12 text-center transition-all ${selectedFile ? 'border-green-200 bg-green-50' : 'border-gray-200 hover:border-red-200 hover:bg-red-50'}`}>
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    onChange={handleFileChange}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    ref={fileInputRef}
+                  />
+                  <div className="space-y-4">
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto transition-colors ${selectedFile ? 'bg-green-600' : 'bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white'}`}>
+                      {selectedFile ? (
+                        <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      ) : (
+                        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
                       )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <button
-              type="submit"
-              className={`w-full py-2 px-4 bg-accent text-white rounded-md hover:bg-accentAlt-dark ${
-                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting..." : "Submit Paper"}
-            </button>
-            {showSubmittingMessage && (
-              <p className="text-primary text-center mt-2">
-                Your paper is being submitted. Please wait...
-              </p>
-            )}
-          </form>
-
-          {showModal && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-              <div className="bg-white rounded-lg shadow-2xl max-w-md w-full p-6 border-l-4 border-red-600">
-                <div className="flex items-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-red-600 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 9v2m0 4h.01M12 5c.8 0 1.6.2 2.3.6.7.4 1.3 1 1.7 1.7.4.7.6 1.5.6 2.3s-.2 1.6-.6 2.3a4.98 4.98 0 01-1.7 1.7c-.7.4-1.5.6-2.3.6s-1.6-.2-2.3-.6a4.98 4.98 0 01-1.7-1.7c-.4-.7-.6-1.5-.6-2.3s.2-1.6.6-2.3a4.98 4.98 0 011.7-1.7c.7-.4 1.5-.6 2.3-.6z"
-                    />
-                  </svg>
-                  <h2 className="text-lg font-bold text-red-700">
-                    Compliance Warning
-                  </h2>
+                    </div>
+                    {selectedFile ? (
+                      <div>
+                        <p className="text-lg font-bold text-green-900 truncate max-w-xs mx-auto">{selectedFile.name}</p>
+                        <button type="button" onClick={(e) => { e.stopPropagation(); removeFile(); }} className="mt-2 text-xs font-bold text-red-600 uppercase tracking-widest hover:underline">Remove & Replace</button>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-lg font-bold text-gray-900">Click to upload PDF</p>
+                        <p className="text-sm text-gray-500 font-medium">IEEE Format preferred (Max 10MB)</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                <p className="text-gray-700 mb-6">
-                  The{" "}
-                  <span className="font-semibold text-red-600">
-                    IEEE compliance report
-                  </span>{" "}
-                  of your paper is below{" "}
-                  <span className="font-semibold">60%</span>. There is a high
-                  risk of rejection. Please review your submission carefully
-                  before proceeding.
-                </p>
+                {complianceLoading && (
+                  <div className="mt-6 flex items-center justify-center space-x-3 text-red-700 font-bold">
+                    <div className="w-4 h-4 border-2 border-red-700 border-t-transparent rounded-full animate-spin"></div>
+                    <span className="text-xs uppercase tracking-widest">Validating IEEE Compliance...</span>
+                  </div>
+                )}
 
-                <div className="flex justify-end gap-3">
-                  <button
-                    onClick={handleModalCancel}
-                    className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleModalConfirm}
-                    className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
-                  >
-                    Submit Anyway
-                  </button>
-                </div>
+                {complianceReport && (
+                  <div className={`mt-8 rounded-2xl p-6 border ${complianceReport.percentage >= 60 ? 'bg-green-50 border-green-100' : 'bg-red-50 border-red-100'}`}>
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="font-bold text-gray-900">Compliance Audit</h3>
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${complianceReport.percentage >= 60 ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
+                        {complianceReport.percentage}% Score
+                      </span>
+                    </div>
+                    <ul className="space-y-3">
+                      {complianceReport.details.map((detail, index) => (
+                        <li key={index} className="flex space-x-3">
+                          <div className={`mt-1.5 h-1.5 w-1.5 rounded-full flex-shrink-0 ${detail.suggestion ? 'bg-red-400' : 'bg-green-400'}`}></div>
+                          <div>
+                            <p className="text-sm font-bold text-gray-800">{detail.rule}</p>
+                            <p className="text-xs text-gray-500 font-medium">{detail.message}</p>
+                            {detail.suggestion && <p className="text-xs text-red-600 font-bold mt-1 italic">Suggest: {detail.suggestion}</p>}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
-          )}
+
+            <div className="pt-8">
+              <button
+                type="submit"
+                className={`w-full py-5 text-white font-extrabold text-lg rounded-2xl transition-all duration-300 transform active:scale-[0.98] shadow-2xl ${isSubmitting ? 'opacity-50 cursor-not-allowed bg-gray-400' : 'hover:scale-[1.01] shadow-red-900/40'}`}
+                style={{ backgroundColor: isSubmitting ? undefined : "#9B0020" }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center space-x-3">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>SUBMITTING MANUSCRIPT...</span>
+                  </div>
+                ) : "SUBMIT RESEARCH PAPER"}
+              </button>
+              {showSubmittingMessage && <p className="text-center text-xs font-bold text-red-700 mt-4 uppercase tracking-widest animate-pulse">Your submission is being processed. Please don't refresh.</p>}
+            </div>
+          </form>
         </div>
       </div>
     </Layout>

@@ -51,85 +51,88 @@ const UserProfile = () => {
 
   return (
     <Layout title="Confizio - Your Profile">
-      <div className="relative flex min-h-screen">
+      <div className="relative flex min-h-screen bg-gray-50">
         <Sidebar />
-        <div className="container mx-auto p-6 flex justify-center items-center">
-          <div className="w-full max-w-xl bg-white p-6 rounded-xl shadow-lg">
-            <h2 className="text-3xl font-bold text-center text-primary mb-6">
-              Your Profile
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-600">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-                  placeholder="Enter Your Name"
-                  required
-                />
+        <div className="flex-1 p-8 lg:p-12">
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+            <div className="h-32 bg-gradient-to-r from-red-900 to-red-700" style={{ backgroundColor: "#9B0020" }}></div>
+            <div className="px-8 pb-12 -mt-16">
+              <div className="relative flex flex-col items-center sm:flex-row sm:items-end sm:space-x-5">
+                <div className="relative group">
+                  <div className="h-32 w-32 rounded-2xl ring-4 ring-white bg-gray-200 flex items-center justify-center overflow-hidden shadow-lg">
+                    <img src="/user.jpg" alt="Profile" className="h-full w-full object-cover" />
+                  </div>
+                </div>
+                <div className="mt-6 sm:mt-0 flex-1 text-center sm:text-left">
+                  <h2 className="text-3xl font-extrabold text-gray-900">{name}</h2>
+                  <p className="text-sm font-medium text-gray-500 uppercase tracking-wider">{auth?.user?.role === 1 ? "Administrator" : "Conference User"}</p>
+                </div>
               </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-600">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-                  placeholder="Enter Your Email"
-                  disabled
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-600">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-                  placeholder="Enter New Password"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-600">
-                  Phone
-                </label>
-                <input
-                  type="text"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-                  placeholder="Enter Your Phone Number"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-600">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary"
-                  placeholder="Enter Your Address"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-1/2 bg-accent hover:bg-accentAlt-dark text-white font-semibold py-2 rounded-lg transition-all duration-300"
-              >
-                Update Profile
-              </button>
-            </form>
+
+              <form onSubmit={handleSubmit} className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-gray-700 ml-1">Full Name</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm hover:border-gray-300"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-gray-700 ml-1">Email (Locked)</label>
+                  <input
+                    type="email"
+                    value={email}
+                    className="w-full px-4 py-3 bg-gray-100 border border-gray-200 rounded-xl text-gray-500 cursor-not-allowed shadow-sm"
+                    disabled
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-gray-700 ml-1">New Password</label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm hover:border-gray-300"
+                    placeholder="••••••••"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-gray-700 ml-1">Phone Number</label>
+                  <input
+                    type="text"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm hover:border-gray-300"
+                    placeholder="+1 (234) 567-890"
+                    required
+                  />
+                </div>
+                <div className="md:col-span-2 space-y-2">
+                  <label className="text-sm font-bold text-gray-700 ml-1">Mailing Address</label>
+                  <textarea
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    rows="3"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm hover:border-gray-300"
+                    placeholder="Enter your permanent address"
+                    required
+                  ></textarea>
+                </div>
+                <div className="md:col-span-2 pt-4">
+                  <button
+                    type="submit"
+                    className="w-full md:w-auto px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-red-900/20"
+                    style={{ backgroundColor: "#9B0020" }}
+                  >
+                    Save Profile Changes
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

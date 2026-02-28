@@ -33,46 +33,49 @@ const icons = {
   ),
 };
 
-const ServiceCard = ({ title, description }) => {
+const ServiceCard = ({ title, description, image }) => {
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
-      style={{
-        background: "white",
-        border: "1px solid #f0f0f0",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-      }}
+      className="group relative overflow-hidden rounded-[2rem] p-8 cursor-pointer transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl border border-gray-100 bg-white"
     >
-      {/* Light grey fill on hover */}
+      {/* Dynamic Background Fill */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-        style={{ backgroundColor: "#f5f5f5" }}
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-br from-red-50 to-white"
       />
 
-      {/* Icon */}
+      {/* Icon/Image Container */}
       <div
-        className="relative z-10 mb-4 inline-flex items-center justify-center w-14 h-14 rounded-xl transition-all duration-300"
+        className="relative z-10 mb-8 inline-flex items-center justify-center w-16 h-16 rounded-2xl transition-all duration-500 shadow-lg shadow-red-900/10 group-hover:scale-110 group-hover:shadow-red-900/20"
         style={{ backgroundColor: "#9B0020" }}
       >
-        <span className="text-white">{icons[title]}</span>
+        {image ? (
+          <img src={image} alt={title} className="w-10 h-10 object-cover rounded-lg" />
+        ) : (
+          <span className="text-white">{icons[title]}</span>
+        )}
       </div>
 
       {/* Content */}
       <div className="relative z-10">
         <h3
-          className="text-lg font-bold mb-2 transition-colors duration-300"
-          style={{ color: "#1a1a1a" }}
+          className="text-2xl font-extrabold mb-4 transition-colors duration-300 text-gray-900 group-hover:text-red-700"
         >
           {title}
         </h3>
-        <p className="text-sm leading-relaxed transition-colors duration-300 text-gray-500">
+        <p className="text-gray-500 font-medium leading-relaxed mb-6">
           {description}
         </p>
+        <div className="flex items-center text-red-700 font-bold text-xs uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+          <span>Learn More</span>
+          <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </div>
       </div>
 
-      {/* Bottom accent line */}
+      {/* Accent Line */}
       <div
-        className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500"
+        className="absolute bottom-0 left-0 h-1.5 w-0 group-hover:w-full transition-all duration-700 ease-out"
         style={{ backgroundColor: "#9B0020" }}
       />
     </div>

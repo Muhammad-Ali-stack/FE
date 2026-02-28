@@ -50,88 +50,97 @@ const Login = () => {
 
   return (
     <Layout title={"Confizio - Login"}>
-      <div className="min-h-screen bg-white text-primary flex items-center justify-center">
-        <div className="w-full max-w-md bg-gray-100 p-8 rounded-lg shadow-lg">
-          <h1
-            className="text-2xl font-bold text-center mb-6"
-            style={{ color: "#5F6F52" }}
-          >
-            Login
-          </h1>
-          <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-            {/* Email Field */}
-            <div>
-              <label
-                className="block text-sm font-medium text-primaryAlt-dark"
-                htmlFor="email"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^\S+@\S+$/i,
-                    message: "Invalid email address",
-                  },
-                })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.email ? "border-red-500" : ""
-                }`}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.email.message}
-                </p>
-              )}
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
+        <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-[2.5rem] shadow-2xl border border-gray-100">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-red-50 mb-6 shadow-inner">
+              <svg className="w-10 h-10 text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2-2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">Welcome Back</h2>
+            <p className="mt-3 text-gray-500 font-medium">Please enter your details to sign in</p>
+          </div>
+
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-gray-700 ml-1 uppercase tracking-widest" htmlFor="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="name@company.com"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  className={`appearance-none relative block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 focus:z-10 sm:text-sm transition-all duration-200 bg-gray-50 ${
+                    errors.email ? "border-red-500" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  required
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1 italic">{errors.email.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center ml-1">
+                  <label className="text-sm font-bold text-gray-700 uppercase tracking-widest" htmlFor="password">Password</label>
+                  <button
+                    type="button"
+                    onClick={() => navigate("/forgot-password")}
+                    className="text-xs font-bold text-red-700 hover:text-red-800 transition-colors uppercase tracking-widest"
+                  >
+                    Forgot?
+                  </button>
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="••••••••"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                  })}
+                  className={`appearance-none relative block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 focus:z-10 sm:text-sm transition-all duration-200 bg-gray-50 ${
+                    errors.password ? "border-red-500" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  required
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1 italic">{errors.password.message}</p>
+                )}
+              </div>
             </div>
 
-            {/* Password Field */}
-            <div>
-              <label
-                className="block text-sm font-medium text-primaryAlt-dark"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Enter your password"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters",
-                  },
-                })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.password ? "border-red-500" : ""
-                }`}
-              />
-              {errors.password && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-
-            {/* Submit Button */}
             <div>
               <button
                 type="submit"
-                className="w-1/2 py-2 px-4 text-white rounded-md bg-primaryAlt-dark hover:bg-primaryAlt-light focus:outline-none focus:ring-2 focus:ring-primaryAlt-dark"
+                className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-extrabold rounded-2xl text-white transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-red-900/20"
+                style={{ backgroundColor: "#9B0020" }}
               >
-                Login
+                Sign In to Dashboard
               </button>
-              <a href="/forgot-password" className="ml-4">
-                Forgot Password
-              </a>
             </div>
           </form>
+
+          <div className="text-center pt-4">
+            <p className="text-sm text-gray-500 font-medium">
+              New to Confizio?{" "}
+              <button
+                onClick={() => navigate("/register")}
+                className="font-bold text-red-700 hover:text-red-800 transition-colors underline decoration-2 underline-offset-4"
+              >
+                Create an account
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     </Layout>

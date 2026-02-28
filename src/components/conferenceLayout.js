@@ -8,7 +8,7 @@ import Layout from "./Layout";
 const Tab = ({ to, label }) => (
   <Link
     to={to}
-    className="text-sm font-medium text-gray-600 hover:text-primary border-b-2 border-transparent hover:border-primary pb-1"
+    className="inline-flex items-center px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:bg-red-50 hover:text-red-700 whitespace-nowrap border-b-2 border-transparent hover:border-red-700"
   >
     {label}
   </Link>

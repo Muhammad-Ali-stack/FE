@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import ServiceCard from "./ServiceCard";
 import AboutUs from "./AboutUs";
+import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -28,10 +29,9 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout title="Confera Flow - Home">
+    <Layout title="Confizio - Global Conference Management">
       {/* Hero Section */}
-      <div className="relative h-screen flex flex-col justify-center items-center text-center text-white px-4">
-
+      <div className="relative h-screen flex flex-col justify-center items-center text-center text-white px-4 overflow-hidden">
         {/* Slideshow */}
         {slides.map((src, index) => (
           <img
@@ -43,7 +43,7 @@ const Home = () => {
           />
         ))}
 
-        <div className="bg-black bg-opacity-50 absolute inset-0 -z-5"></div>
+        <div className="bg-black bg-opacity-60 absolute inset-0 -z-5"></div>
 
         {/* Slide Dots */}
         <div className="absolute bottom-8 flex space-x-2 z-10">
@@ -60,60 +60,112 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="relative z-10 p-4 max-w-2xl">
+        <div className="relative z-10 p-4 max-w-4xl">
           <h1
-            className="text-4xl md:text-6xl font-extrabold mb-2 text-light -mt-24"
+            className="text-5xl md:text-7xl font-extrabold mb-4 text-white tracking-tight"
             data-aos="fade-up"
           >
             Managing Conferences Made
           </h1>
           <h1
-            className="text-4xl md:text-6xl font-extrabold mb-6"
+            className="text-5xl md:text-7xl font-extrabold mb-8"
             style={{
               color: "#9B0020",
-              textShadow:
-                "-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white",
+              textShadow: "2px 2px 0px rgba(255,255,255,1), -1px -1px 0px rgba(255,255,255,1), 1px -1px 0px rgba(255,255,255,1), -1px 1px 0px rgba(255,255,255,1)",
             }}
             data-aos="fade-up"
             data-aos-delay="300"
           >
             Effortless!
           </h1>
+          <p className="text-xl md:text-2xl text-gray-200 font-medium mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="500">
+            The all-in-one platform for researchers, organizers, and reviewers to connect and collaborate.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="700">
+            <Link
+              to="/register"
+              className="px-8 py-4 text-lg font-bold rounded-2xl text-white transition-all transform hover:scale-105 shadow-2xl shadow-red-900/40"
+              style={{ backgroundColor: "#9B0020" }}
+            >
+              Get Started Now
+            </Link>
+            <Link
+              to="/about"
+              className="px-8 py-4 text-lg font-bold rounded-2xl bg-white text-gray-900 hover:bg-gray-100 transition-all transform hover:scale-105"
+            >
+              Learn More
+            </Link>
+          </div>
         </div>
       </div>
 
-      {/* Features Section */}
-      <section className="py-16 bg-gray-100 px-4">
-        <h2
-          className="text-3xl md:text-4xl font-semibold text-center mb-8"
-          data-aos="fade-up"
-        >
-          Features
-        </h2>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div data-aos="fade-right">
-            <ServiceCard title="Conference Management" description="Streamline your conference workflows." />
+      {/* Services/Features Section */}
+      <section className="py-24 bg-gray-50 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-sm font-extrabold text-red-700 uppercase tracking-widest mb-3" data-aos="fade-up">Platform Services</h2>
+            <p className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight" data-aos="fade-up" data-aos-delay="200">
+              Tailored for every role
+            </p>
           </div>
-          <div data-aos="fade-left">
-            <ServiceCard title="Registration" description="Customizable forms for attendee registration." />
-          </div>
-          <div data-aos="fade-right">
-            <ServiceCard title="Paper Submission" description="Efficient and simple submission process." />
-          </div>
-          <div data-aos="fade-left">
-            <ServiceCard title="Paper Review" description="Detailed feedback for submitted papers." />
-          </div>
-          <div data-aos="fade-right">
-            <ServiceCard title="Communication Management" description="Automated notifications for stakeholders." />
-          </div>
-          <div data-aos="fade-left">
-            <ServiceCard title="Plagiarism Detection" description="Quick and detailed plagiarism reports." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div data-aos="fade-up" data-aos-delay="100">
+              <ServiceCard 
+                title="Organizers" 
+                description="Streamline workflows, manage tracks, and handle registrations with ease." 
+                image="/organizer.jpg"
+              />
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200">
+              <ServiceCard 
+                title="Authors" 
+                description="Efficient paper submission and real-time status tracking for researchers." 
+                image="/author.jpg"
+              />
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300">
+              <ServiceCard 
+                title="Reviewers" 
+                description="High-quality feedback tools for evaluations and program discussions." 
+                image="/reviewer.jpg"
+              />
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400">
+              <ServiceCard 
+                title="Administrators" 
+                description="Global oversight and platform management at your fingertips." 
+                image="/admin.jpg"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* About Us */}
-      <section className="py-16 px-4" data-aos="fade-up">
+      {/* Stats Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="bg-red-900 rounded-[3rem] p-12 md:p-20 text-white shadow-2xl overflow-hidden relative" style={{ backgroundColor: "#9B0020" }}>
+            <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+              <div>
+                <div className="text-6xl font-extrabold mb-2">500+</div>
+                <div className="text-red-200 font-bold uppercase tracking-widest text-sm">Conferences</div>
+              </div>
+              <div>
+                <div className="text-6xl font-extrabold mb-2">50k+</div>
+                <div className="text-red-200 font-bold uppercase tracking-widest text-sm">Papers Published</div>
+              </div>
+              <div>
+                <div className="text-6xl font-extrabold mb-2">120+</div>
+                <div className="text-red-200 font-bold uppercase tracking-widest text-sm">Countries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section className="py-24 px-4 bg-gray-50 overflow-hidden" data-aos="fade-up">
         <AboutUs />
       </section>
     </Layout>

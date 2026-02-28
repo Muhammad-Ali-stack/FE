@@ -68,235 +68,162 @@ const Register = () => {
 
   return (
     <Layout title={"Confizio - Register"}>
-      <div className="min-h-screen bg-white text-primary flex items-center justify-center my-10">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
         <Toaster position="top-center" reverseOrder={false} />
+        <div className="max-w-xl w-full space-y-8 bg-white p-10 rounded-[2.5rem] shadow-2xl border border-gray-100 my-12">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-red-50 mb-6 shadow-inner">
+              <svg className="w-10 h-10 text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+              </svg>
+            </div>
+            <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">Create Account</h2>
+            <p className="mt-3 text-gray-500 font-medium">Join our global community of researchers</p>
+          </div>
 
-        <div className="w-full max-w-md bg-gray-100 p-8 rounded-lg shadow-lg">
-          <h1 className="text-2xl font-bold text-center mb-6 text-primary">
-            Register
-          </h1>
-
-          <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-primaryAlt-dark"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                {...register("name", { required: "Name is required" })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.name ? "border-red-500" : ""
-                }`}
-              />
-              {errors.name && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.name.message}
-                </p>
-              )}
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-700 ml-1 uppercase tracking-widest">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="John Doe"
+                  {...register("name", { required: "Name is required" })}
+                  className={`block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 transition-all bg-gray-50 ${
+                    errors.name ? "border-red-500" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  required
+                />
+                {errors.name && <p className="text-red-500 text-xs mt-1 italic">{errors.name.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-700 ml-1 uppercase tracking-widest">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="john@example.com"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  className={`block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 transition-all bg-gray-50 ${
+                    errors.email ? "border-red-500" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  required
+                />
+                {errors.email && <p className="text-red-500 text-xs mt-1 italic">{errors.email.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-700 ml-1 uppercase tracking-widest">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="••••••••"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "At least 6 characters",
+                    },
+                  })}
+                  className={`block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 transition-all bg-gray-50 ${
+                    errors.password ? "border-red-500" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  required
+                />
+                {errors.password && <p className="text-red-500 text-xs mt-1 italic">{errors.password.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-700 ml-1 uppercase tracking-widest">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="+1 (234) 567-890"
+                  {...register("phone", { required: "Phone is required" })}
+                  className={`block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 transition-all bg-gray-50 ${
+                    errors.phone ? "border-red-500" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  required
+                />
+                {errors.phone && <p className="text-red-500 text-xs mt-1 italic">{errors.phone.message}</p>}
+              </div>
+              <div className="md:col-span-2 space-y-2">
+                <label className="text-xs font-bold text-gray-700 ml-1 uppercase tracking-widest">Mailing Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  placeholder="123 Conference Way, City, Country"
+                  {...register("address", { required: "Address is required" })}
+                  className={`block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 transition-all bg-gray-50 ${
+                    errors.address ? "border-red-500" : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  required
+                />
+                {errors.address && <p className="text-red-500 text-xs mt-1 italic">{errors.address.message}</p>}
+              </div>
             </div>
 
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-primaryAlt-dark"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                {...register("email", {
-                  required: "Email is required",
-                  pattern: {
-                    value: /^\S+@\S+$/i,
-                    message: "Invalid email address",
-                  },
-                })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.email ? "border-red-500" : ""
-                }`}
-              />
-              {errors.email && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-primaryAlt-dark"
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                placeholder="Enter your password"
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: "Password must be at least 6 characters",
-                  },
-                })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.password ? "border-red-500" : ""
-                }`}
-              />
-              {errors.password && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-primaryAlt-dark"
-              >
-                Phone
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                placeholder="Enter your phone number"
-                {...register("phone", { required: "Phone number is required" })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.phone ? "border-red-500" : ""
-                }`}
-              />
-              {errors.phone && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.phone.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <label
-                htmlFor="address"
-                className="block text-sm font-medium text-primaryAlt-dark"
-              >
-                Address
-              </label>
-              <input
-                type="text"
-                id="address"
-                placeholder="Enter your address"
-                {...register("address", { required: "Address is required" })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.address ? "border-red-500" : ""
-                }`}
-              />
-              {errors.address && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.address.message}
-                </p>
-              )}
-            </div>
-            {/* Expertise Checkboxes (Only for Reviewers) */}
-            {isReviewer &&
-              Array.isArray(expertiseOptions) &&
-              expertiseOptions.length > 0 && (
-                <div>
-                  <label className="block text-sm font-medium text-primaryAlt-dark">
-                    Areas & field of specialization
-                  </label>
+            {isReviewer && Array.isArray(expertiseOptions) && expertiseOptions.length > 0 && (
+              <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                <label className="text-xs font-bold text-gray-700 ml-1 uppercase tracking-widest">Areas of Specialization</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {expertiseOptions.map((expertise, index) => (
-                    <div key={index} className="flex items-center mt-2">
+                    <div key={index} className="flex items-center space-x-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-red-200 transition-all shadow-sm">
                       <input
                         type="checkbox"
                         id={`expertise-${index}`}
                         {...register("expertise")}
                         value={expertise}
-                        className="mr-2"
+                        className="w-4 h-4 text-red-600 rounded focus:ring-red-500 border-gray-300"
                       />
-                      <label
-                        htmlFor={`expertise-${index}`}
-                        className="text-sm text-primary"
-                      >
-                        {expertise}
-                      </label>
+                      <label htmlFor={`expertise-${index}`} className="text-sm font-medium text-gray-700 cursor-pointer">{expertise}</label>
                     </div>
                   ))}
-                  {errors.expertise && (
-                    <p className="text-red-500 text-xs italic">
-                      {errors.expertise.message}
-                    </p>
-                  )}
                 </div>
-              )}
-
-            {/* {isReviewer && (
-              <div>
-                <label
-                  htmlFor="expertise"
-                  className="block text-sm font-medium text-primaryAlt-dark"
-                >
-                  Expertise
-                </label>
-                <input
-                  type="text"
-                  id="expertise"
-                  placeholder="Enter your expertise"
-                  {...register("expertise", {
-                    required: "Expertise is required for reviewers",
-                  })}
-                  className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                    errors.expertise ? "border-red-500" : ""
-                  }`}
-                />
-                {errors.expertise && (
-                  <p className="text-red-500 text-xs italic">
-                    {errors.expertise.message}
-                  </p>
-                )}
               </div>
-            )} */}
+            )}
 
-            <div>
-              <label
-                htmlFor="recovery_key"
-                className="block text-sm font-medium text-primaryAlt-dark"
-              >
-                Recovery Key
-              </label>
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-gray-700 ml-1 uppercase tracking-widest">Secret Recovery Key</label>
               <input
                 type="text"
                 id="recovery_key"
-                placeholder="Enter your recovery key"
-                {...register("recovery_key", {
-                  required: "Recovery Key is required",
-                })}
-                className={`mt-1 w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-primaryAlt-dark focus:outline-none border-secondaryAlt-dark text-primary ${
-                  errors.recovery_key ? "border-red-500" : ""
+                placeholder="Memorable phrase for password reset"
+                {...register("recovery_key", { required: "Recovery Key is required" })}
+                className={`block w-full px-4 py-4 border placeholder-gray-400 text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-700 transition-all bg-gray-50 ${
+                  errors.recovery_key ? "border-red-500" : "border-gray-200 hover:border-gray-300"
                 }`}
+                required
               />
-              {errors.recovery_key && (
-                <p className="text-red-500 text-xs italic">
-                  {errors.recovery_key.message}
-                </p>
-              )}
+              {errors.recovery_key && <p className="text-red-500 text-xs mt-1 italic">{errors.recovery_key.message}</p>}
             </div>
 
-            <div>
+            <div className="pt-4">
               <button
                 type="submit"
-                className="w-1/2 py-2 px-4 mt-3 text-white rounded-md bg-primaryAlt-dark hover:bg-primaryAlt-light focus:outline-none focus:ring-2 focus:ring-primaryAlt-dark"
+                className="w-full flex justify-center py-4 px-4 border border-transparent text-sm font-extrabold rounded-2xl text-white transition-all transform hover:scale-[1.01] active:scale-[0.99] shadow-xl shadow-red-900/20"
+                style={{ backgroundColor: "#9B0020" }}
               >
-                {isReviewer ? "Register as Reviewer" : "Register"}
+                {isReviewer ? "Register as Reviewer" : "Create Account"}
               </button>
             </div>
           </form>
+
+          <div className="text-center pt-4">
+            <p className="text-sm text-gray-500 font-medium">
+              Already have an account?{" "}
+              <button
+                onClick={() => navigate("/login")}
+                className="font-bold text-red-700 hover:text-red-800 transition-colors underline decoration-2 underline-offset-4"
+              >
+                Sign in instead
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     </Layout>

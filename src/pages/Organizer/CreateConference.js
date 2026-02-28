@@ -168,340 +168,236 @@ function ConferenceCreationForm() {
 
   return (
     <Layout title={"Confizio - Create Conference"}>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen bg-gray-50">
         <UserSidebar />
-        <div className="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg my-8">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-            Submit Conference Details
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Conference Name */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="conferenceName"
-              >
-                Conference Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="conferenceName"
-                name="conferenceName"
-                value={formData.conferenceName}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter the full name of the conference"
-                required
-              />
+        <div className="flex-1 p-8 lg:p-12">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+            <div className="bg-gradient-to-r from-red-900 to-red-700 p-8 text-white" style={{ backgroundColor: "#9B0020" }}>
+              <h2 className="text-3xl font-extrabold tracking-tight">Register New Conference</h2>
+              <p className="mt-2 text-red-100 font-medium">Provide the official details to list your conference on Confizio.</p>
             </div>
-
-            {/* Acronym */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="acronym"
-              >
-                Acronym <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="acronym"
-                name="acronym"
-                value={formData.acronym}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter the acronym"
-                required
-              />
-            </div>
-
-            {/* Web Page */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="webPage"
-              >
-                Web Page
-              </label>
-              <input
-                type="url"
-                id="webPage"
-                name="webPage"
-                value={formData.webPage}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="https://example.com"
-              />
-            </div>
-
-            {/* Venue */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="venue"
-              >
-                Venue
-              </label>
-              <input
-                type="text"
-                id="venue"
-                name="venue"
-                value={formData.venue}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter venue"
-              />
-            </div>
-
-            {/* Expertise - marked as required */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="expertise"
-              >
-                Expertise Required (comma-separated){" "}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="expertise"
-                name="expertise"
-                value={formData.expertise.join(", ")}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter required expertise (e.g., AI, ML, NLP)"
-              />
-            </div>
-
-            {/* City */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="city"
-              >
-                City
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter city"
-              />
-            </div>
-
-            {/* Country */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="country"
-              >
-                Country/Region
-              </label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter country or region"
-              />
-            </div>
-
-            {/* Start Date */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="startDate"
-              >
-                Start Date <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="date"
-                id="startDate"
-                name="startDate"
-                value={formData.startDate}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                required
-              />
-            </div>
-
-            {/* End Date */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="endDate"
-              >
-                End Date <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="date"
-                id="endDate"
-                name="endDate"
-                value={formData.endDate}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                required
-              />
-            </div>
-
-            {/* Abstract Deadline */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="abstractDeadline"
-              >
-                Abstract Registration Deadline
-              </label>
-              <input
-                type="date"
-                id="abstractDeadline"
-                name="abstractDeadline"
-                value={formData.abstractDeadline}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-              />
-            </div>
-
-            {/* Submission Deadline */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="submissionDeadline"
-              >
-                Submission Deadline
-              </label>
-              <input
-                type="date"
-                id="submissionDeadline"
-                name="submissionDeadline"
-                value={formData.submissionDeadline}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-              />
-            </div>
-
-            {/* Review Mode */}
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">
-                Review Mode <span className="text-red-500">*</span>
-              </label>
-              <div className="flex gap-4">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="mode"
-                    value="single-blind"
-                    checked={formData.mode === "single-blind"}
-                    onChange={handleChange}
-                  />
-                  Single Blind
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="mode"
-                    value="double-blind"
-                    checked={formData.mode === "double-blind"}
-                    onChange={handleChange}
-                  />
-                  Double Blind
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="mode"
-                    value="no-blind"
-                    checked={formData.mode === "no-blind"}
-                    onChange={handleChange}
-                  />
-                  No Blind
-                </label>
-              </div>
-              <div className="mt-2 text-sm text-gray-600 space-y-1">
-                <p>
-                  <strong>Single-blind:</strong> Reviewer knows author's
-                  identity, author does not know reviewer.
-                </p>
-                <p>
-                  <strong>Double-blind:</strong> Neither author nor reviewer
-                  knows each other's identity.
-                </p>
-                <p>
-                  <strong>No-blind:</strong> Both author and reviewer know each
-                  other's identity.
-                </p>
-              </div>
-            </div>
-
-            {/* Primary Area */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="primaryArea"
-              >
-                Primary Area
-              </label>
-              <input
-                type="text"
-                id="primaryArea"
-                name="primaryArea"
-                value={formData.primaryArea}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter primary research area"
-              />
-            </div>
-
-            {/* Secondary Area */}
-            <div>
-              <label
-                className="block text-gray-700 font-medium mb-1"
-                htmlFor="secondaryArea"
-              >
-                Secondary Area
-              </label>
-              <input
-                type="text"
-                id="secondaryArea"
-                name="secondaryArea"
-                value={formData.secondaryArea}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-md border-gray-300"
-                placeholder="Enter secondary research area"
-              />
-            </div>
-
-            {/* Topics */}
-            <div className="grid grid-cols-2 gap-4">
-              {formData.topics.map((topic, index) => (
-                <div key={index}>
-                  <label className="block text-gray-700 font-medium mb-1">
-                    Topic {index + 1}
-                  </label>
-                  <input
-                    type="text"
-                    value={topic}
-                    onChange={(e) => handleTopicChange(index, e.target.value)}
-                    className="w-full p-2 border rounded-md border-gray-300"
-                    placeholder={`Enter topic ${index + 1}`}
-                  />
+            
+            <form onSubmit={handleSubmit} className="p-8 lg:p-10 space-y-8">
+              {/* Core Details Section */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 border-l-4 border-red-600 pl-4">General Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">Conference Full Name <span className="text-red-500">*</span></label>
+                    <input
+                      type="text"
+                      name="conferenceName"
+                      value={formData.conferenceName}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="e.g. Int. Conference on Machine Learning"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">Acronym <span className="text-red-500">*</span></label>
+                    <input
+                      type="text"
+                      name="acronym"
+                      value={formData.acronym}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="e.g. ICML 2026"
+                      required
+                    />
+                  </div>
+                  <div className="md:col-span-2 space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">Official Website</label>
+                    <input
+                      type="url"
+                      name="webPage"
+                      value={formData.webPage}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="https://conference.example.org"
+                    />
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-1/2 bg-accent text-white py-2 rounded-md font-semibold hover:bg-accentAlt-dark focus:outline-none"
-            >
-              Submit Conference
-            </button>
-          </form>
+              {/* Location Section */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 border-l-4 border-red-600 pl-4">Venue & Location</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">Venue</label>
+                    <input
+                      type="text"
+                      name="venue"
+                      value={formData.venue}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="Convention Center"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">City</label>
+                    <input
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="New York"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">Country</label>
+                    <input
+                      type="text"
+                      name="country"
+                      value={formData.country}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="USA"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Dates Section */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 border-l-4 border-red-600 pl-4">Key Deadlines & Dates</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Start Date <span className="text-red-500">*</span></label>
+                    <input
+                      type="date"
+                      name="startDate"
+                      value={formData.startDate}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">End Date <span className="text-red-500">*</span></label>
+                    <input
+                      type="date"
+                      name="endDate"
+                      value={formData.endDate}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Abstract Deadline</label>
+                    <input
+                      type="date"
+                      name="abstractDeadline"
+                      value={formData.abstractDeadline}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1">Submission Deadline</label>
+                    <input
+                      type="date"
+                      name="submissionDeadline"
+                      value={formData.submissionDeadline}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Review Mode */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 border-l-4 border-red-600 pl-4">Review Strategy</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  {['single-blind', 'double-blind', 'no-blind'].map((mode) => (
+                    <label key={mode} className={`relative flex p-4 cursor-pointer rounded-xl border-2 transition-all duration-200 ${formData.mode === mode ? 'border-red-600 bg-red-50' : 'border-gray-100 hover:border-gray-200'}`}>
+                      <input
+                        type="radio"
+                        name="mode"
+                        value={mode}
+                        checked={formData.mode === mode}
+                        onChange={handleChange}
+                        className="sr-only"
+                      />
+                      <div className="flex flex-col">
+                        <span className={`text-sm font-bold uppercase tracking-wider ${formData.mode === mode ? 'text-red-700' : 'text-gray-900'}`}>{mode.replace('-', ' ')}</span>
+                        <span className="text-xs text-gray-500 mt-1">
+                          {mode === 'single-blind' && "Reviewers know authors, but not vice-versa."}
+                          {mode === 'double-blind' && "Both parties remain anonymous during review."}
+                          {mode === 'no-blind' && "Both parties know each other's identities."}
+                        </span>
+                      </div>
+                      {formData.mode === mode && (
+                        <div className="absolute top-4 right-4 text-red-600">
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      )}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Research Areas */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 border-l-4 border-red-600 pl-4">Research Scope</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">Primary Area</label>
+                    <input
+                      type="text"
+                      name="primaryArea"
+                      value={formData.primaryArea}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="e.g. Artificial Intelligence"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-gray-700 ml-1">Expertise Required (comma-separated) <span className="text-red-500">*</span></label>
+                    <input
+                      type="text"
+                      name="expertise"
+                      value={formData.expertise.join(", ")}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                      placeholder="e.g. AI, ML, NLP"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                  {formData.topics.map((topic, index) => (
+                    <div key={index} className="space-y-2">
+                      <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Topic {index + 1}</label>
+                      <input
+                        type="text"
+                        value={topic}
+                        onChange={(e) => handleTopicChange(index, e.target.value)}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-200 focus:bg-white focus:outline-none transition-all duration-200 shadow-sm"
+                        placeholder={`Topic ${index + 1}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-8 border-t border-gray-100 flex justify-end">
+                <button
+                  type="submit"
+                  className="w-full md:w-auto px-12 py-4 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-red-900/20"
+                  style={{ backgroundColor: "#9B0020" }}
+                >
+                  Submit Conference for Approval
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </Layout>

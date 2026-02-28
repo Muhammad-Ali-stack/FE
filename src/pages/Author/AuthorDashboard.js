@@ -4,28 +4,35 @@ import Layout from "../../components/Layout";
 
 const AuthorDashboard = () => {
   return (
-    <Layout title={"Confizio - Reviewer Dashboard"} t>
-      <div className="relative flex min-h-screen">
-        {/* Background Image */}
-        <img
-          src="/author.jpg"
-          alt="Background"
-          className="absolute inset-0 w-full h-full object-cover -z-10"
-        />
-
-        {/* Overlay for readability */}
-        <div className="absolute inset-0 bg-black opacity-50 -z-10"></div>
-
-        {/* Sidebar */}
+    <Layout title={"Confizio - Author Dashboard"}>
+      <div className="relative flex min-h-screen bg-gray-50">
         <AuthorSidebar />
-
-        {/* Main content */}
-        <div className="flex-1 flex flex-col items-center justify-center p-8 text-white">
-          <h1 className="text-5xl font-bold mb-6">Author Dashboard</h1>
-          <p className="text-xl mb-10 text-gray-200 max-w-lg text-center">
-            Welcome to the Author dashboard. Manage all your conferences from
-            one place.
-          </p>
+        <div className="flex-1 p-8 lg:p-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="relative overflow-hidden rounded-[3rem] bg-gray-900 shadow-2xl min-h-[400px] flex items-center">
+              <img
+                src="/author.jpg"
+                alt="Author Background"
+                className="absolute inset-0 w-full h-full object-cover opacity-40"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-red-950 via-red-900/40 to-transparent"></div>
+              <div className="relative z-10 p-12 lg:p-20 max-w-2xl">
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-red-600 text-white text-[10px] font-bold uppercase tracking-[0.2em] mb-6 shadow-lg shadow-red-900/40">
+                  Lead Researcher
+                </span>
+                <h1 className="text-5xl lg:text-7xl font-extrabold text-white tracking-tight mb-6">
+                  Author <span className="text-red-500">Dashboard</span>
+                </h1>
+                <p className="text-lg lg:text-xl text-gray-300 font-medium leading-relaxed mb-10">
+                  Track your research submissions, respond to reviewer feedback, and manage your academic publications from one unified interface.
+                </p>
+                <div className="flex items-center space-x-6">
+                  <div className="h-1 w-24 bg-red-600 rounded-full"></div>
+                  <span className="text-white font-bold uppercase tracking-widest text-xs">Research Excellence Hub</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
