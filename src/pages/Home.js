@@ -62,7 +62,7 @@ const Home = () => {
 
         <div className="relative z-10 p-4 max-w-4xl">
           <h1
-            className="text-5xl md:text-7xl font-extrabold mb-4 text-white tracking-tight"
+            className="text-1xl md:text-6xl font-extrabold mb-4 text-white tracking-tight"
             data-aos="fade-up"
           >
             Managing Conferences Made
@@ -136,29 +136,6 @@ const Home = () => {
                 description="Global oversight and platform management at your fingertips." 
                 image="/admin.jpg"
               />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-red-900 rounded-[3rem] p-12 md:p-20 text-white shadow-2xl overflow-hidden relative" style={{ backgroundColor: "#9B0020" }}>
-            <div className="absolute top-0 right-0 -mt-20 -mr-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-              <div>
-                <div className="text-6xl font-extrabold mb-2">500+</div>
-                <div className="text-red-200 font-bold uppercase tracking-widest text-sm">Conferences</div>
-              </div>
-              <div>
-                <div className="text-6xl font-extrabold mb-2">50k+</div>
-                <div className="text-red-200 font-bold uppercase tracking-widest text-sm">Papers Published</div>
-              </div>
-              <div>
-                <div className="text-6xl font-extrabold mb-2">120+</div>
-                <div className="text-red-200 font-bold uppercase tracking-widest text-sm">Countries</div>
-              </div>
             </div>
           </div>
         </div>

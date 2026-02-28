@@ -68,6 +68,7 @@ function App() {
         <Route path="/forgot-password" element={<Forgotpassword />} />
         <Route path="*" element={<Pagenotfound />} />
         <Route path="all-conferences" element={<AllConferences />} />
+
         {/* Admin Dashboard Routes */}
         <Route path="/admindashboard/*" element={<AdminPrivateRoute />}>
           <Route path="admin-dashboard" element={<AdminDashboard />} />
@@ -80,11 +81,14 @@ function App() {
             element={<RejectedConferences />}
           />
         </Route>
+
         {/* User Dashboard Routes */}
         <Route path="/userdashboard/*" element={<UserPrivateRoute />}>
-          {/* Default route redirects to the user dashboard */}
           <Route path="user-dashboard" element={<UserDashboard />} />
-          {/* <Route index element={<Navigate to="user-dashboard" />} /> */}
+
+          {/* ✅ FIXED: Moved create-conference inside UserPrivateRoute */}
+          <Route path="create-conference" element={<ConferenceCreationForm />} />
+
           {/* Role-based dashboards */}
           <Route element={<RolePrivateRoute role="organizer" />}>
             <Route
@@ -118,15 +122,13 @@ function App() {
             <Route path="reviewer-dashboard" element={<ReviewerDashboard />} />
             <Route
               path="conferences-reviewer"
-              s
               element={<ReviewerConferences />}
             />
             <Route
               path="all-assigned-papers"
-              s
               element={<AllPapersToReview />}
             />
-            <Route path="review-form" s element={<ReviewForm />} />
+            <Route path="review-form" element={<ReviewForm />} />
           </Route>
 
           <Route element={<RolePrivateRoute role="author" />}>
@@ -137,14 +139,14 @@ function App() {
           </Route>
 
           <Route path="roles" element={<RolesPage />} />
-
           <Route path="user-profile" element={<UserProfile />} />
         </Route>
+
         <Route
           path="conference/:acronym/submit-paper/:id"
           element={<AuthorForm />}
         />
-        {/* <Route path="/conference/:id" element={<ConferenceDetailsPage />} /> */}
+
         <Route path="/conference/:id" element={<ConferenceLayout />}>
           <Route index element={<ConferenceDetailsPage />} />
           <Route path="invite-reviewers" element={<InviteReviewers />} />
@@ -165,22 +167,21 @@ function App() {
           />
           <Route path="papers" element={<AllPapersOfAuthor />} />
         </Route>
+
         <Route path="/paper/:id" element={<PaperSubmissionDetails />} />
         <Route
           path="/conference/submissions/:id"
           element={<ConferencePapers />}
         />
-        {/* <Route path="organizer-dashboard" element={<OrganizerDashboard />} /> */}
+
         <Route path="/thankyou" element={<ThankYouPage />} />
         <Route path="/response" element={<InvitationResponse />} />
-        {/* <Route path="register-reviewer" element={<ReviewerRegistrationForm />} />
-        <Route path="login-reviewer" element={<ReviewerLoginForm />} /> */}
+
         <Route
           path="/generate-proceedings/:id/:cname"
           element={<ConferenceProceedingsForm />}
         />
         <Route path="view-proceedings/:id/:cname" element={<ProceedingsPreview />} />
-        <Route path="create-conference" element={<ConferenceCreationForm />} />
       </Routes>
     </>
   );

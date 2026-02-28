@@ -13,7 +13,7 @@ const AboutUs = () => {
       <div className="text-center" data-aos="fade-up">
         <h2 className="text-base text-red-600 font-bold tracking-widest uppercase mb-3">Our Story</h2>
         <p className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
-          About Confizio
+          About ConfForum
         </p>
         <div className="mt-6 mx-auto w-24 h-1.5 rounded-full" style={{ backgroundColor: "#9B0020" }} />
       </div>
